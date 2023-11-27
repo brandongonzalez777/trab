@@ -11,9 +11,14 @@ class Program
 
         do
         {
-            MostrarMenu();
-            Console.Write("Selecciona una opción: ");
-            opcion = int.Parse(Console.ReadLine());
+            Console.WriteLine("Opciones:");
+            Console.WriteLine("1. Perro");
+            Console.WriteLine("2. Gato");
+            Console.WriteLine("3. Mostrar Animales");
+            Console.WriteLine("4. Salir");
+
+            Console.Write("Seleccione una opción: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
 
             switch (opcion)
             {
@@ -30,65 +35,51 @@ class Program
                     Console.WriteLine("Saliendo del programa. ¡Hasta luego!");
                     break;
                 default:
-                    Console.WriteLine("Opción no válida. Inténtalo de nuevo.");
+                    Console.WriteLine("Opción no válida. Inténtelo de nuevo.");
                     break;
             }
 
         } while (opcion != 4);
     }
 
-    static void MostrarMenu()
-    {
-        Console.WriteLine("Opciones:");
-        Console.WriteLine("1. Perro");
-        Console.WriteLine("2. Gato");
-        Console.WriteLine("3. Mostrar Animales");
-        Console.WriteLine("4. Salir");
-    }
-
     static void CrearPerro()
     {
         Console.Write("Ingrese el nombre del perro: ");
         string nombre = Console.ReadLine();
+
         Perro perro = new Perro(nombre);
         animales.Add(perro);
-        Console.WriteLine("Perro creado con éxito.");
-        Console.WriteLine("==========================================");
+
+        Console.WriteLine($"Perro '{nombre}' creado exitosamente.");
+        Console.WriteLine("========================================");
     }
 
     static void CrearGato()
     {
         Console.Write("Ingrese el nombre del gato: ");
         string nombre = Console.ReadLine();
+
         Gato gato = new Gato(nombre);
-        Console.Write("Ingrese la cantidad de vidas del gato: ");
-        int vidas = int.Parse(Console.ReadLine());
+        Console.Write("Ingrese las vidas del gato: ");
+        int vidas = Convert.ToInt32(Console.ReadLine());
         gato.EstablecerVidas(vidas);
+
         animales.Add(gato);
-        Console.WriteLine("Gato creado con éxito.");
-        Console.WriteLine("==========================================");
+
+        Console.WriteLine($"Gato '{nombre}' creado exitosamente con {vidas} vidas.");
+        Console.WriteLine("=====================================================");
     }
 
     static void MostrarAnimales()
     {
-        if (animales.Count == 0)
+        Console.WriteLine("Lista de animales:");
+
+        foreach (var animal in animales)
         {
-            Console.WriteLine("No hay animales para mostrar.");
-        }
-        else
-        {
-            Console.WriteLine("Información de los animales:");
-            foreach (var animal in animales)
-            {
-                Console.WriteLine($"Nombre: {animal.Nombre}");
-                animal.HacerSonido();
-                if (animal is Gato)
-                {
-                    Gato gato = (Gato)animal;
-                    Console.WriteLine($"Vidas: {gato.ObtenerVidas()}");
-                }
-                Console.WriteLine();
-            }
+            animal.MostrarInformacion();
+            animal.HacerSonido();
+            Console.WriteLine();
+            Console.WriteLine("========================================");
         }
     }
 }

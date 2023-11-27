@@ -1,8 +1,8 @@
 using System;
 
-class Gato : Animal
+public class Gato : Animal
 {
-    private int vidas;
+    private int Vidas { get; set; }
 
     public Gato(string nombre) : base(nombre)
     {
@@ -10,16 +10,21 @@ class Gato : Animal
 
     public void EstablecerVidas(int vidas)
     {
-        this.vidas = vidas;
+        Vidas = vidas;
     }
 
     public int ObtenerVidas()
     {
-        return vidas;
+        return Vidas;
     }
 
     public override void HacerSonido()
     {
         Console.WriteLine("Meow");
+    }
+
+    public override void MostrarInformacion()
+    {
+        Console.WriteLine($"Gato - Nombre: {Nombre}, Raza: {Raza}, Vidas: {Vidas}");
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-class Perro : Animal
+public class Perro : Animal
 {
     public Perro(string nombre) : base(nombre)
     {
@@ -8,6 +8,11 @@ class Perro : Animal
 
     public override void HacerSonido()
     {
-        Console.WriteLine("WOOF");
+        Console.WriteLine("Woof");
+    }
+
+    public override void MostrarInformacion()
+    {
+        Console.WriteLine($"Perro - Nombre: {Nombre}, Raza: {Raza}");
     }
 }

@@ -1,16 +1,15 @@
 using System;
 
-class Animal
+public abstract class Animal
 {
-    public string Nombre { get; private set; }
+    public string Nombre { get; set; }
+    protected string Raza { get; set; }
 
     public Animal(string nombre)
     {
         Nombre = nombre;
     }
 
-    public virtual void HacerSonido()
-    {
-        Console.WriteLine("Sonido de animal");
-    }
+    public abstract void HacerSonido();
+    public abstract void MostrarInformacion();
 }
